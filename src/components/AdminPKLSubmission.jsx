@@ -44,8 +44,12 @@ const AdminPKLSubmission = () => {
 
             { status: statusBaru.toLowerCase(), catatan },
             {
-                headers: { 'Content-Type': 'application/json' }
-            })
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("admin_token")}`
+                }
+            }
+        )
             .then(() => {
                 alert("Status berhasil diperbarui!");
                 setShowModal(false);
