@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaHome,
   FaUserGraduate,
@@ -9,12 +9,23 @@ import {
   FaFileAlt,
   FaChevronDown,
   FaChevronUp,
+  FaSignOutAlt,
 } from "react-icons/fa";
 import logo from "../assets/kominfo.png";
 import "./Sidebar.css";
 
 const SidebarAdmin = () => {
   const [isMasterDataOpen, setMasterDataOpen] = useState(false);
+  const navigate = useNavigate();
+  const isAdminLoggedIn = localStorage.getItem("admin_token");
+
+  const handleLogout = () => {
+    if (window.confirm("Yakin ingin logout?")) {
+      localStorage.removeItem("admin_token");
+      localStorage.removeItem("role");
+      window.location.reload();
+    }
+  };
 
   return (
     <div className="sidebar">
@@ -37,8 +48,8 @@ const SidebarAdmin = () => {
 
         {isMasterDataOpen && (
           <div className="submenu">
-            <Link to="/admin/data-mahasiswa" className="submenu-item">
-              <FaUserGraduate className="menu-icon" /> <span>Data Mahasiswa</span>
+            <Link to="/admin/pengajuanlist" className="submenu-item">
+              <FaUserGraduate className="menu-icon" /> <span>Data Pengajuan PKL</span>
             </Link>
             <Link to="/admin/data-instansi" className="submenu-item">
               <FaBuilding className="menu-icon" /> <span>Data Instansi</span>
@@ -53,9 +64,17 @@ const SidebarAdmin = () => {
         <Link to="/admin/jadwal" className="menu-item">
           <FaCalendarAlt className="menu-icon" /> <span>Jadwal PKL</span>
         </Link>
+
+        {/* Logout hanya tampil jika admin login */}
+        {isAdminLoggedIn && (
+          <div className="menu-item logout-item" onClick={handleLogout} style={{ color: "red" }}>
+            <FaSignOutAlt className="menu-icon" /> <span>Logout</span>
+          </div>
+        )}
       </nav>
     </div>
   );
 };
+
 
 export default SidebarAdmin;

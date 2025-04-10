@@ -1,18 +1,21 @@
 .pkl-submit-btn {
-    display: block !important;
-    visibility: visible !important;
-    width: 100%;
-    background: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .pkl-submit-btn:hover {
-    background: #0056b3;
-  }
-  
+  display: block !important;
+  width: 100%;
+  background: #007bff; /* Biru yang lebih jelas */
+  color: white; /* Teks putih agar kontras */
+  font-weight: bold; /* Teks lebih tebal */
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase; /* Huruf kapital biar lebih jelas */
+}
+
+.pkl-submit-btn:hover {
+  background: #0056b3; /* Biru lebih gelap saat di-hover */
+  transform: scale(1.05);
+}
